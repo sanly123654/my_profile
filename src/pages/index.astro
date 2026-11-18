@@ -1,0 +1,98 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Section from '../components/Section.astro';
+import { profile } from '../data/profile';
+---
+
+<BaseLayout title={`${profile.name} — ${profile.title}`} description={profile.bio}>
+  <main class="container">
+    <Hero />
+
+    <Section title="Skills" id="skills">
+      <ul class="chips">
+        {profile.skills.map((skill) => <li>{skill}</li>)}
+      </ul>
+    </Section>
+
+    <Section title="Experience" id="experience">
+      <ol class="timeline">
+        {profile.experience.map((item) => (
+          <li>
+            <div class="row">
+              <h3>{item.role} · {item.org}</h3>
+              <span class="period">{item.period}</span>
+            </div>
+            <p>{item.summary}</p>
+          </li>
+        ))}
+      </ol>
+    </Section>
+
+    <Section title="Projects" id="projects">
+      <div class="cards">
+        {profile.projects.map((project) => (
+          <article class="card">
+            <h3>
+              {project.href ? (
+                <a href={project.href} rel="noopener noreferrer">{project.name}</a>
+              ) : (
+                project.name
+              )}
+            </h3>
+            <p>{project.description}</p>
+            <ul class="tags">
+              {project.tags.map((tag) => <li>{tag}</li>)}
+            </ul>
+          </article>
+        ))}
+      </div>
+    </Section>
+  </main>
+
+  <footer class="container">
+    <p>© {new Date().getFullYear()} {profile.name}</p>
+  </footer>
+</BaseLayout>
+
+<style>
+  .chips, .tags, .timeline { list-style: none; padding: 0; margin: 0; }
+  .chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .chips li {
+    padding: 0.3rem 0.8rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--surface);
+    font-size: 0.9rem;
+  }
+
+  .timeline li + li { margin-top: 1.5rem; }
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.25rem 1rem;
+  }
+  h3 { font-size: 1.05rem; }
+  .period { color: var(--muted); font-size: 0.9rem; font-variant-numeric: tabular-nums; }
+  .timeline p, .card p { margin: 0.35rem 0 0; color: var(--muted); }
+
+  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 1rem; }
+  .card {
+    padding: 1.25rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+  }
+  .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.9rem; }
+  .tags li {
+    font-size: 0.78rem;
+    padding: 0.15rem 0.55rem;
+    border-radius: 6px;
+    background: var(--accent-soft);
+    color: var(--accent);
+  }
+
+  footer { padding-bottom: 3rem; color: var(--muted); font-size: 0.85rem; }
+  footer p { margin: 0; padding-top: 2rem; border-top: 1px solid var(--border); }
+</style>
