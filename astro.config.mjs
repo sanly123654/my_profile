@@ -2,8 +2,9 @@
 import { defineConfig } from 'astro/config';
 
 // https://docs.astro.build/en/reference/configuration-reference/
+// Deployed to GitHub Pages as a project site: https://sanly123654.github.io/my_profile/
 export default defineConfig({
-  // Set to the deployed URL (used for canonical links / sitemap).
-  site: 'https://example.com',
+  site: 'https://sanly123654.github.io',
+  base: '/my_profile',
   output: 'static',
 });

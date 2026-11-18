@@ -19,3 +19,7 @@ Single-page static Astro site (`output: 'static'`, Astro 7, strict TS via `astro
 - `src/pages/index.astro` composes the page: `Hero` plus one `Section` per list (skills, experience, projects). `Section` is a generic titled wrapper that takes `title` and `id` and renders its slot.
 - `src/layouts/BaseLayout.astro` owns `<head>` (meta, OG tags, canonical URL built from `site` in `astro.config.mjs`) and imports the global stylesheet.
 - **Styling:** design tokens are CSS custom properties on `:root` in `src/styles/global.css`, with a dark palette under `prefers-color-scheme: dark`. Components use scoped `<style>` blocks that reference only these tokens, so add new colors as tokens, not hard-coded values. `.container` (max 760px, 16px side padding) is the page-width wrapper.
+
+## Deployment
+
+GitHub Actions (`.github/workflows/deploy.yml`) builds on push to `main` and publishes `dist/` to GitHub Pages at `https://sanly123654.github.io/my_profile/`. Because it is a project site, `astro.config.mjs` sets `base: '/my_profile'`: any root-relative URL to a `public/` asset or internal page must be prefixed with `import.meta.env.BASE_URL` (see the favicon link in `BaseLayout.astro`), or it will 404 in production while still working in a local setup without a base.
