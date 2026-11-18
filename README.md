@@ -16,7 +16,7 @@ npm run preview   # serve dist/ locally
 All text (name, bio, links, skills, experience, projects) lives in `src/data/profile.ts`.
 ## Deploy
 
-Every push to `main` builds and deploys to GitHub Pages via `.github/workflows/deploy.yml`:
+Deployment to GitHub Pages is **manual**: in the repo's **Actions** tab, pick **Deploy to GitHub Pages** → **Run workflow**. It builds `main` and publishes to:
 https://sanly123654.github.io/my_profile/
 
 One-time setup: in the repo's **Settings → Pages**, set **Source** to **GitHub Actions**.

@@ -22,4 +22,4 @@ Single-page static Astro site (`output: 'static'`, Astro 7, strict TS via `astro
 
 ## Deployment
 
-GitHub Actions (`.github/workflows/deploy.yml`) builds on push to `main` and publishes `dist/` to GitHub Pages at `https://sanly123654.github.io/my_profile/`. Because it is a project site, `astro.config.mjs` sets `base: '/my_profile'`: any root-relative URL to a `public/` asset or internal page must be prefixed with `import.meta.env.BASE_URL` (see the favicon link in `BaseLayout.astro`), or it will 404 in production while still working in a local setup without a base.
+GitHub Actions (`.github/workflows/deploy.yml`) is manual-only (`workflow_dispatch`, run from the Actions tab); pushing to `main` does not deploy. It publishes `dist/` to GitHub Pages at `https://sanly123654.github.io/my_profile/`. Because it is a project site, `astro.config.mjs` sets `base: '/my_profile'`: any root-relative URL to a `public/` asset or internal page must be prefixed with `import.meta.env.BASE_URL` (see the favicon link in `BaseLayout.astro`), or it will 404 in production while still working in a local setup without a base.
